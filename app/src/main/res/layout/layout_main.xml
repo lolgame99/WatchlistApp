@@ -23,7 +23,7 @@
                 android:orientation="horizontal">
 
                 <ImageButton
-                    android:id="@+id/imageButton2"
+                    android:id="@+id/btn_today"
                     style="@android:style/Widget.DeviceDefault.ImageButton"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -34,7 +34,7 @@
                     app:srcCompat="@drawable/ic_calender"/>
 
                 <ImageButton
-                    android:id="@+id/imageButton"
+                    android:id="@+id/btn_popular"
                     style="@android:style/Widget.DeviceDefault.ImageButton"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -59,7 +59,8 @@
                     android:gravity="center_horizontal"
                     android:text="Aktuell"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                    android:textColor="@android:color/background_light"/>
+                    android:textColor="@android:color/background_light"
+                    android:textSize="30sp"/>
 
                 <TextView
                     android:id="@+id/textView4"
@@ -69,7 +70,8 @@
                     android:gravity="center_horizontal"
                     android:text="Beliebt"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                    android:textColor="@android:color/background_light"/>
+                    android:textColor="@android:color/background_light"
+                    android:textSize="30sp"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -93,7 +95,7 @@
                 android:orientation="horizontal">
 
                 <ImageButton
-                    android:id="@+id/imageButton2"
+                    android:id="@+id/btn_allSeries"
                     style="@android:style/Widget.DeviceDefault.ImageButton"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -130,7 +132,7 @@
                     android:text="Serien"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:textColor="@android:color/background_light"
-                    android:textSize="34sp"/>
+                    android:textSize="30sp"/>
 
                 <TextView
                     android:id="@+id/tv_login"
@@ -140,7 +142,8 @@
                     android:gravity="center_horizontal"
                     android:text="Login"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                    android:textColor="@android:color/background_light"/>
+                    android:textColor="@android:color/background_light"
+                    android:textSize="30sp"/>
             </LinearLayout>
 
         </LinearLayout>
