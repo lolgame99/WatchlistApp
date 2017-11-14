@@ -31,7 +31,7 @@
                     android:background="@android:color/transparent"
                     android:elevation="0dp"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/ic_calender"/>
+                    app:srcCompat="@drawable/ic_calender" />
 
                 <ImageButton
                     android:id="@+id/btn_popular"
@@ -42,7 +42,7 @@
                     android:background="@android:color/transparent"
                     android:elevation="0dp"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/ic_star"/>
+                    app:srcCompat="@drawable/ic_star" />
             </LinearLayout>
 
             <LinearLayout
@@ -103,7 +103,7 @@
                     android:background="@android:color/transparent"
                     android:elevation="0dp"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/ic_tv"/>
+                    app:srcCompat="@drawable/ic_tv" />
 
                 <ImageButton
                     android:id="@+id/btn_login"

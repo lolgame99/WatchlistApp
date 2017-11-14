@@ -21,18 +21,13 @@
                 android:text="Header-Placeholder"
                 android:textAlignment="center"
                 android:textColor="@color/colorAccent"
-                android:textSize="20sp" />
+                android:textSize="25sp" />
 
             <ImageView
                 android:id="@+id/iv_seriesImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:srcCompat="@mipmap/ic_placeholder" />
-
-            <RatingBar
-                android:id="@+id/ratingBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
 
             <TableLayout
                 android:layout_width="match_parent"
@@ -53,6 +48,7 @@
                         android:text="Name:"
                         android:textAllCaps="false"
                         android:textColor="@android:color/background_light"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -224,17 +220,38 @@
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/tb_tv_status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="Status-Placeholder"
-                        android:textColor="@android:color/background_light"
-                        android:textSize="15sp" />
                 </TableRow>
 
             </TableLayout>
+
+            <TextView
+                android:id="@+id/tb_tv_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Status-Placeholder"
+                android:textColor="@android:color/background_light"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_synopsis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:text="Synopsis"
+                android:textAlignment="center"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/tv_synpsisContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="SynopsisContent-Placeholder Dies ist ein Test um zu sehen ob dieser Placeholder funktioniert"
+                android:textColor="@android:color/background_light" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
