@@ -220,18 +220,18 @@
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
+                    <TextView
+                        android:id="@+id/tb_tv_status"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="Status-Placeholder"
+                        android:textColor="@android:color/background_light"
+                        android:textSize="15sp" />
+
                 </TableRow>
 
             </TableLayout>
-
-            <TextView
-                android:id="@+id/tb_tv_status"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="Status-Placeholder"
-                android:textColor="@android:color/background_light"
-                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/tv_synopsis"

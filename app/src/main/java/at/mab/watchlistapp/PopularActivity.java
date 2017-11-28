@@ -1,8 +1,10 @@
 package at.mab.watchlistapp;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.ListView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -21,6 +23,16 @@ public class PopularActivity extends AppCompatActivity{
         loadRestData();
     }
 
+    private ListView lv;
+    private SeriesBigAdapter adapter;
+
+    private void displayData(JSONArray data){
+        this.lv = (ListView) findViewById(R.id.lv_popular);
+        this.adapter = new SeriesBigAdapter(this, data);
+        this.lv.setAdapter(this.adapter);
+
+    }
+
     private void loadRestData(){
         try {
             JsonArrayRequest request = new JsonArrayRequest("https://api.themoviedb.org/3/tv/popular?api_key=02315c61f82284303a120d89ce93baa4&language=de",
@@ -29,6 +41,7 @@ public class PopularActivity extends AppCompatActivity{
                         public void onResponse(JSONArray jsonArray) {
                             for(int i = 0; i < jsonArray.length(); i++) {
                                 try {
+                                    //JSON object not array
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                                     Log.d("MAB",jsonObject.toString());
                                 } catch (JSONException e) {
@@ -37,7 +50,8 @@ public class PopularActivity extends AppCompatActivity{
 
                             }
 
-                            // allDone();
+                            displayData(jsonArray);
+
                         }
                     },
                     new Response.ErrorListener() {
