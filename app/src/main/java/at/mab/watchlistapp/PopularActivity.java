@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.ListView;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
@@ -22,18 +23,17 @@ public class PopularActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("HUL", "Oncreate ist am Start");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_listitembig);
+        setContentView(R.layout.layout_popularlist);
         loadRestData();
     }
 
     private ListView lv;
     private SeriesBigAdapter adapter;
 
-    private void displayData(JSONArray data){
+    private void displayData(JSONObject data) throws JSONException {
         this.lv = (ListView) findViewById(R.id.lv_popular);
         this.adapter = new SeriesBigAdapter(this, data);
         this.lv.setAdapter(this.adapter);
-
     }
 
     private void loadRestData(){
@@ -44,6 +44,13 @@ public class PopularActivity extends AppCompatActivity{
                         @Override
                         public void onResponse(JSONObject response){
                             Log.d("HUL", response.toString());
+
+                            try {
+                                displayData(response);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                Log.d("HUL", e.getMessage());
+                            }
                         }
                     }, new Response.ErrorListener(){
                     @Override
@@ -51,6 +58,8 @@ public class PopularActivity extends AppCompatActivity{
                         Log.d("HUL", error.getMessage());
                     }
                 });
+            RequestQueue queue = Volley.newRequestQueue(this);
+            queue.add(request);
 
         } catch (Exception e) {
             e.printStackTrace();
