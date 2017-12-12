@@ -17,11 +17,13 @@ public class ViewSeriesActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_viewseries);
 
-        Bundle bundle = getIntent().getExtras();
-        String seriesID = bundle.getString("ID");
+
+        String seriesID = getIntent().getExtras().getString("ID");
 
         Log.d("HUL", seriesID);
     }
+
+
 
 
 }

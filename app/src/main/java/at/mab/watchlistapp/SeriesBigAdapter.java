@@ -2,7 +2,6 @@ package at.mab.watchlistapp;
 
 import android.app.Activity;
 import android.content.Context;
-import android.hardware.SensorEventCallback;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +16,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+
+import at.mab.watchlistapp.R;
+import at.mab.watchlistapp.SeriesBig;
 
 /**
  * Created by Lucas Huber on 28.11.2017.

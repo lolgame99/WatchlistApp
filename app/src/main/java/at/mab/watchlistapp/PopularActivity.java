@@ -33,7 +33,7 @@ public class PopularActivity extends AppCompatActivity{
                 Bundle bundle = new Bundle();
                 bundle.putString("ID", sb.getId());
 
-                Intent intentLoadNewActivity = new Intent(PopularActivity.this, AllSeriesActivity.class);
+                Intent intentLoadNewActivity = new Intent(PopularActivity.this, ViewSeriesActivity.class);
                 intentLoadNewActivity.putExtras(bundle);
                 startActivity(intentLoadNewActivity);
             }
