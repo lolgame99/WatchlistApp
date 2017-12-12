@@ -1,40 +1,54 @@
 package at.mab.watchlistapp;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class PopularActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("HUL", "Oncreate ist am Start");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_popularlist);
         loadRestData();
+        this.lv = (ListView) findViewById(R.id.lv_popular);
+        this.lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
+
+                SeriesBig sb = (SeriesBig)((ListView) parent).getAdapter().getItem(i);
+
+                Bundle bundle = new Bundle();
+                bundle.putString("ID", sb.getId());
+
+                Intent intentLoadNewActivity = new Intent(PopularActivity.this, AllSeriesActivity.class);
+                intentLoadNewActivity.putExtras(bundle);
+                startActivity(intentLoadNewActivity);
+            }
+        });
     }
 
     private ListView lv;
     private SeriesBigAdapter adapter;
 
     private void displayData(JSONObject data) throws JSONException {
-        this.lv = (ListView) findViewById(R.id.lv_popular);
         this.adapter = new SeriesBigAdapter(this, data);
         this.lv.setAdapter(this.adapter);
     }
+
+
 
     private void loadRestData(){
         try {
@@ -49,7 +63,7 @@ public class PopularActivity extends AppCompatActivity{
                                 displayData(response);
                             } catch (JSONException e) {
                                 e.printStackTrace();
-                                Log.d("HUL", e.getMessage());
+                                Log.wtf("HUL", e.getMessage());
                             }
                         }
                     }, new Response.ErrorListener(){
@@ -63,10 +77,11 @@ public class PopularActivity extends AppCompatActivity{
 
         } catch (Exception e) {
             e.printStackTrace();
-            Log.d("HUL", "Catch ist am Start");
         }
 
     }
+
+
 
 
 }

@@ -8,11 +8,13 @@ public class SeriesBig {
     private String synopsis;
     private String poster;
     private String name;
+    private String id;
 
-    public SeriesBig(String synopsis, String poster, String name) {
+    public SeriesBig(String synopsis, String poster, String name, String id) {
         this.synopsis = synopsis;
         this.poster = poster;
         this.name = name;
+        this.id = id;
     }
 
     public String getSynopsis() {
@@ -37,5 +39,13 @@ public class SeriesBig {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

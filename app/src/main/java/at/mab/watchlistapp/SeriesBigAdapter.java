@@ -35,10 +35,10 @@ public class SeriesBigAdapter extends BaseAdapter {
         content = data.getJSONArray("results");
 
         this.series = new ArrayList<>();
-        for (int i = 0; i<data.length(); i++){
+        for (int i = 0; i<content.length(); i++){
 
             try {
-                this.series.add(new SeriesBig(content.getJSONObject(i).optString("overview"),"http://image.tmdb.org/t/p/w342" + content.getJSONObject(i).optString("poster_path"), content.getJSONObject(i).optString("name")));
+                this.series.add(new SeriesBig(content.getJSONObject(i).optString("overview"),"http://image.tmdb.org/t/p/w342" + content.getJSONObject(i).optString("poster_path"), content.getJSONObject(i).optString("name"), content.getJSONObject(i).optString("id")));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -58,8 +58,8 @@ public class SeriesBigAdapter extends BaseAdapter {
     }
 
     @Override
-    public long getItemId(int i) {
-        return 0;
+    public long getItemId(int position) {
+        return this.series.get(position).hashCode();
     }
 
     @Override
@@ -82,7 +82,7 @@ public class SeriesBigAdapter extends BaseAdapter {
         Picasso.with(context)
                 .load(this.series.get(position).getPoster())
                 .placeholder(R.mipmap.ic_placeholder) //optional
-                //.resize(imgWidth, imgHeight)         //optional
+                //.resize(100, 150)         //optional
                 //.centerCrop()                        //optional
                 .into(ivPoster);                        //Your image view object.
 
