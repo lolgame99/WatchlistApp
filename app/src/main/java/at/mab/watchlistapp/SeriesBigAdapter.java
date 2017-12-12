@@ -73,6 +73,10 @@ public class SeriesBigAdapter extends BaseAdapter {
         String[] sentences = fullString.split("\\.",3);
 
         shortString = sentences[0];
+        
+        if (shortString.length()<30){
+            shortString = "Es ist leider keine Synopsis vorhanden. Tut uns sehr leid!";
+        }
 
         TextView tvHeader = (TextView) ll.findViewById(R.id.tv_header);
         TextView tvSynopsis = (TextView) ll.findViewById(R.id.tv_synopsis);
