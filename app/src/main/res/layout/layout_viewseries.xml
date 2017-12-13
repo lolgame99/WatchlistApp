@@ -143,7 +143,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Productionsfirmas:"
+                        android:text="Productionsfirmen:"
                         android:textColor="@android:color/background_light"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -191,7 +191,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Last Air Date"
+                        android:text="Last Air Date:"
                         android:textColor="@android:color/background_light"
                         android:textSize="15sp"
                         android:textStyle="bold" />

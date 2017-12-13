@@ -48,8 +48,6 @@ public class PopularActivity extends AppCompatActivity{
         this.lv.setAdapter(this.adapter);
     }
 
-
-
     private void loadRestData(){
         try {
             JsonObjectRequest request = new JsonObjectRequest("https://api.themoviedb.org/3/tv/popular?api_key=02315c61f82284303a120d89ce93baa4&language=de",
@@ -80,8 +78,6 @@ public class PopularActivity extends AppCompatActivity{
         }
 
     }
-
-
 
 
 }

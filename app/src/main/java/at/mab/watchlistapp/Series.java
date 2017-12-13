@@ -1,5 +1,8 @@
 package at.mab.watchlistapp;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 /**
  * Created by Lucas Huber on 12.12.2017.
  */
@@ -10,14 +13,14 @@ public class Series {
     private String header;
     private String poster;
     private String firstAirDate;
-    private String[] genres;
+    private JSONArray genres;
     private String lastAirDate;
     private int seasonCount;
     private int episodeCount;
-    private String[] productionCompanies;
+    private JSONArray productionCompanies;
     private String status;
 
-    public Series(String synopsis, String id, String header, String poster, String firstAirDate, String[] genres, String lastAirDate, int seasonCount, int episodeCount, String[] productionCompanies, String status) {
+    public Series(String synopsis, String id, String header, String poster, String firstAirDate, JSONArray genres, String lastAirDate, int seasonCount, int episodeCount, JSONArray productionCompanies, String status) {
         this.synopsis = synopsis;
         this.id = id;
         this.header = header;
@@ -71,11 +74,11 @@ public class Series {
         this.firstAirDate = firstAirDate;
     }
 
-    public String[] getGenres() {
+    public JSONArray getGenres() {
         return genres;
     }
 
-    public void setGenres(String[] genres) {
+    public void setGenres(JSONArray genres) {
         this.genres = genres;
     }
 
@@ -103,11 +106,11 @@ public class Series {
         this.episodeCount = episodeCount;
     }
 
-    public String[] getProductionCompanies() {
+    public JSONArray getProductionCompanies() {
         return productionCompanies;
     }
 
-    public void setProductionCompanies(String[] productionCompanies) {
+    public void setProductionCompanies(JSONArray productionCompanies) {
         this.productionCompanies = productionCompanies;
     }
 
