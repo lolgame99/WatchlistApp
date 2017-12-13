@@ -2,6 +2,8 @@ package at.mab.watchlistapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -21,8 +23,12 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -67,6 +73,7 @@ public class ViewSeriesActivity extends AppCompatActivity{
 
 
                             try {
+
                                 displayData(series);
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -101,42 +108,74 @@ public class ViewSeriesActivity extends AppCompatActivity{
         TextView tbtvSynopsis = (TextView) this.findViewById(R.id.tv_synpsisContent);
         ImageView ivSeriesImage = (ImageView) this.findViewById(R.id.iv_seriesImage);
 
-        tvHeader.setText(series.getHeader());
-        tbtvName.setText(series.getHeader());
-        tbtvFirstAir.setText(series.getFirstAirDate());
+        tvHeader.setText(this.series.getHeader());
+        tbtvName.setText(this.series.getHeader());
+        setRightDate(this.series.getFirstAirDate(), tbtvFirstAir);
         //tbtvSeasonCount.setText(series.getSeasonCount());
         //tbtvEpisodeCount.setText(series.getEpisodeCount());
-        tbtvLastAir.setText(series.getLastAirDate());
-        tbtvStatus.setText(series.getStatus());
-        tbtvSynopsis.setText(series.getSynopsis());
+        setRightDate(this.series.getLastAirDate(), tbtvLastAir);
+        tbtvStatus.setText(this.series.getStatus());
+        tbtvSynopsis.setText(this.series.getSynopsis());
         tbtvGenres.setText("");
         tbtvProduction.setText("");
+        getGenres(tbtvGenres);
+        getProduction(tbtvProduction);
+        loadImageFromUrl(this.series.getPoster(), ivSeriesImage);
+
+    }
+
+    private void setRightDate(String date, TextView textView) {
+        String strDate = date;
+        SimpleDateFormat orgDate = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat newDate = new SimpleDateFormat("dd.MM.yyyy");
+        try {
+            textView.setText(newDate.format(orgDate.parse(strDate)));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void getProduction(TextView tbtvProduction) throws JSONException {
+        int c = 0;
+        ArrayList<JSONObject> productionList = new ArrayList<>();
+        for (int i = 0; i < this.series.getProductionCompanies().length(); i++){
+            productionList.add((JSONObject) this.series.getProductionCompanies().get(i));
+        }
+        c = 0;
+        for (int i = 0; i < productionList.size(); i++){
+            tbtvProduction.append(productionList.get(i).optString("name"));
+            if (c < productionList.size() - 1){
+                tbtvProduction.append("\n");
+                c++;
+            }
+        }
+    }
+
+    private void getGenres(TextView tbtvGenres) throws JSONException {
         ArrayList<JSONObject> genreList = new ArrayList<>();
-        for (int i = 0; i < series.getGenres().length(); i++){
-            genreList.add((JSONObject) series.getGenres().get(i));
+        int c = 0;
+        for (int i = 0; i < this.series.getGenres().length(); i++){
+            genreList.add((JSONObject) this.series.getGenres().get(i));
         }
         for (int i = 0; i < genreList.size(); i++){
-            tbtvGenres.append(genreList.get(i).optString("name") + "\n");
+            tbtvGenres.append(genreList.get(i).optString("name"));
+            if (c < genreList.size() - 1){
+                tbtvGenres.append("\n");
+                c++;
+            }
         }
-        ArrayList<JSONObject> productionList = new ArrayList<>();
-        for (int i = 0; i < series.getProductionCompanies().length(); i++){
-            productionList.add((JSONObject) series.getProductionCompanies().get(i));
-        }
-        for (int i = 0; i < productionList.size(); i++){
-            tbtvProduction.append(productionList.get(i).optString("name") + "\n");
-        }
-        ivSeriesImage.setImageDrawable(LoadImageFromWebOperations(series.getPoster()));
+    }
+
+    private void loadImageFromUrl (String url, ImageView imageView){
+        Picasso.with(this)
+                .load(url)
+                .placeholder(R.mipmap.ic_placeholder) //optional
+                .error(R.mipmap.ic_placeholder)
+                //.resize(100, 150)         //optional
+                //.centerCrop()                        //optional
+                .into(imageView);                        //Your image view object.
 
     }
 
-    public static Drawable LoadImageFromWebOperations(String url) {
-        try {
-            InputStream is = (InputStream) new URL(url).getContent();
-            Drawable d = Drawable.createFromStream(is, "src name");
-            return d;
-        } catch (Exception e) {
-            return null;
-        }
-    }
 
 }
