@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingLeft="8sp"
-                android:text="skjfhdsakfölaflsaflnsafönsalfnsafksajflkflkfjksjfksjflkjsfsslkflksjlkslkjfs"
+                android:text="Synopsis-Placeholder"
                 android:textColor="@android:color/background_light" />
 
         </LinearLayout>
