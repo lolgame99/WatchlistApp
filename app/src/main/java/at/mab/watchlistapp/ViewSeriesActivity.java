@@ -1,15 +1,8 @@
 package at.mab.watchlistapp;
 
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,10 +16,6 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -96,6 +85,7 @@ public class ViewSeriesActivity extends AppCompatActivity{
     }
 
     private void displayData(Series series) throws JSONException {
+        //Initialize
         TextView tvHeader = (TextView) this.findViewById(R.id.tv_header);
         TextView tbtvName = (TextView) this.findViewById(R.id.tb_tv_name);
         TextView tbtvFirstAir = (TextView) this.findViewById(R.id.tb_tv_firstAir);
@@ -108,20 +98,27 @@ public class ViewSeriesActivity extends AppCompatActivity{
         TextView tbtvSynopsis = (TextView) this.findViewById(R.id.tv_synpsisContent);
         ImageView ivSeriesImage = (ImageView) this.findViewById(R.id.iv_seriesImage);
 
+        //Setting Texts
         tvHeader.setText(this.series.getHeader());
         tbtvName.setText(this.series.getHeader());
         setRightDate(this.series.getFirstAirDate(), tbtvFirstAir);
-        //tbtvSeasonCount.setText(series.getSeasonCount());
-        //tbtvEpisodeCount.setText(series.getEpisodeCount());
+        tbtvSeasonCount.setText(String.valueOf(series.getSeasonCount()));
+        tbtvEpisodeCount.setText(String.valueOf(series.getEpisodeCount()));
         setRightDate(this.series.getLastAirDate(), tbtvLastAir);
         tbtvStatus.setText(this.series.getStatus());
-        tbtvSynopsis.setText(this.series.getSynopsis());
-        tbtvGenres.setText("");
-        tbtvProduction.setText("");
-        getGenres(tbtvGenres);
-        getProduction(tbtvProduction);
+        setSynopsis(tbtvSynopsis);
+        setGenres(tbtvGenres);
+        setProduction(tbtvProduction);
         loadImageFromUrl(this.series.getPoster(), ivSeriesImage);
 
+    }
+
+    private void setSynopsis(TextView tbtvSynopsis) {
+        String Synopsis = this.series.getSynopsis();
+        if (Synopsis.length() < 30) {
+            Synopsis = "Es ist leider keine Synopsis vorhanden. Tut uns sehr leid!";
+        }
+        tbtvSynopsis.setText(Synopsis);
     }
 
     private void setRightDate(String date, TextView textView) {
@@ -135,7 +132,8 @@ public class ViewSeriesActivity extends AppCompatActivity{
         }
     }
 
-    private void getProduction(TextView tbtvProduction) throws JSONException {
+    private void setProduction(TextView tbtvProduction) throws JSONException {
+        tbtvProduction.setText("");
         int c = 0;
         ArrayList<JSONObject> productionList = new ArrayList<>();
         for (int i = 0; i < this.series.getProductionCompanies().length(); i++){
@@ -151,9 +149,10 @@ public class ViewSeriesActivity extends AppCompatActivity{
         }
     }
 
-    private void getGenres(TextView tbtvGenres) throws JSONException {
-        ArrayList<JSONObject> genreList = new ArrayList<>();
+    private void setGenres(TextView tbtvGenres) throws JSONException {
+        tbtvGenres.setText("");
         int c = 0;
+        ArrayList<JSONObject> genreList = new ArrayList<>();
         for (int i = 0; i < this.series.getGenres().length(); i++){
             genreList.add((JSONObject) this.series.getGenres().get(i));
         }
@@ -176,6 +175,5 @@ public class ViewSeriesActivity extends AppCompatActivity{
                 .into(imageView);                        //Your image view object.
 
     }
-
 
 }

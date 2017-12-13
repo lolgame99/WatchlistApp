@@ -75,7 +75,7 @@ public class SeriesBigAdapter extends BaseAdapter {
         shortString = sentences[0];
 
         if (shortString.length()<30){
-            shortString = "Es ist leider keine Synopsis vorhanden. Tut uns sehr leid!";
+            shortString = "Es ist leider keine Synopsis vorhanden oder die Synopsis konnte nicht korrekt geladen werden. Tut uns sehr leid!";
         }
 
         TextView tvHeader = (TextView) ll.findViewById(R.id.tv_header);
